@@ -11,6 +11,7 @@ A SwiftUI iOS app that lets you sort through your photo library one photo at a t
 - **Image prefetching** — The next 6 photos are preloaded in the background so card transitions stay smooth.
 - **Permission handling** — Requests read/write photo library access on first launch. Shows a clear prompt to go to system settings if access is denied.
 - **AdMob banner ads** — An optional adaptive banner ad at the bottom of the screen, togglable in Settings.
+- **Album picker** — A dedicated sheet lets you choose which album to swipe through. Selecting an album reloads the card stack from that album; "Alle Fotos" resets to the full library.
 - **Settings sheet** — A simple sheet to enable or disable ads. The preference persists across launches via `UserDefaults`.
 - **Portrait-only layout** — The app is locked to portrait orientation.
 
@@ -44,7 +45,7 @@ The app follows a straightforward SwiftUI MVVM pattern.
 ### Views
 | File | Responsibility |
 |---|---|
-| `ContentView` | Root view. Reads `LibraryAccessState` from the ViewModel and switches between loading, unauthorized, empty, and ready states. Hosts the header and the banner ad. |
+| `ContentView` | Root view. Reads `LibraryAccessState` from the ViewModel and switches between loading, unauthorized, empty, and ready states. Hosts the header (including the album-picker button), the album-picker sheet, and the banner ad. |
 | `SwipeCardView` | A single photo card. Handles the `DragGesture`, paints green/red overlays proportional to drag distance, animates the card off-screen on a confirmed swipe, and reports the decision back via a callback. |
 | `SettingsView` | A `List`-based sheet with a single toggle. Writes through `AdSettings.shared`. |
 | `BannerAdView` | `UIViewRepresentable` that wraps `GADBannerView`. Creates the banner inside a container's `layoutSubviews` so the width is known before the ad request is sent. Reports the loaded ad height back to SwiftUI via a `@Binding`. |
@@ -52,13 +53,14 @@ The app follows a straightforward SwiftUI MVVM pattern.
 ### ViewModel
 `SvenSwipeViewModel` is the single source of truth during a session. It:
 - Requests and tracks photo library authorization.
-- Fetches image assets (images only, newest first).
+- Fetches the list of available albums and exposes them for the album picker.
+- Fetches image assets (images only, newest first), optionally scoped to the selected album.
 - Maintains a current index and prefetch window.
 - Queues "delete" decisions into `pendingDeletes` without touching the library until the user confirms.
 - Commits the batch deletion through `PhotoLibraryService` and refreshes the fetch result.
 
 ### Services
-`PhotoLibraryService` is the only file that touches the `Photos` framework directly. It exposes async wrappers around authorization, image requests, caching, and deletion, keeping the ViewModel free of UIKit/Photos details.
+`PhotoLibraryService` is the only file that touches the `Photos` framework directly. It exposes async wrappers around authorization, album listing, scoped asset fetching, image requests, caching, and deletion, keeping the ViewModel free of UIKit/Photos details.
 
 ### Settings
 `AdSettings` is a simple singleton backed by `UserDefaults`. It stores one boolean (`adsEnabled`) and is read by both `ContentView` (to show/hide the banner) and `SettingsView` (to drive the toggle).
