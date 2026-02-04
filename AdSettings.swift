@@ -7,9 +7,9 @@ final class AdSettings {
 
     private static let key = "com.svenswipe.adsEnabled"
 
-    /// `true` = ads are shown (default on first launch).
+    /// `true` = ads are shown. Defaults to `false` on first launch.
     var adsEnabled: Bool {
-        get { UserDefaults.standard.object(forKey: Self.key) as? Bool ?? true }
+        get { UserDefaults.standard.object(forKey: Self.key) as? Bool ?? false }
         set { UserDefaults.standard.set(newValue, forKey: Self.key) }
     }
 
