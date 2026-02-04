@@ -6,20 +6,94 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0C8E17AA2F3349CC00674637 /* AdSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E17A92F3349CC00674637 /* AdSettings.swift */; };
+		0C8E17AC2F3349CC00674637 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E17AB2F3349CC00674637 /* BannerAdView.swift */; };
+		0C8E17AE2F3349CD00674637 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E17AD2F3349CD00674637 /* SettingsView.swift */; };
+		0C8E17B12F334AD800674637 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 0C8E17B02F334AD800674637 /* GoogleInteractiveMediaAds */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0C8E17C02F334DF000674637 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C62ADBC2F1791140093F18C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C62ADC32F1791140093F18C;
+			remoteInfo = SvenSwipe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0C8E17B62F334CE700674637 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0C62ADC42F1791140093F18C /* SvenSwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SvenSwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C8E17A92F3349CC00674637 /* AdSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSettings.swift; sourceTree = "<group>"; };
+		0C8E17AB2F3349CC00674637 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		0C8E17AD2F3349CD00674637 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0C8E17BC2F334DF000674637 /* SvenSwipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SvenSwipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0C469C712F32120D002B09A7 /* Exceptions for "SvenSwipe" folder in "SvenSwipe" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0C62ADC32F1791140093F18C /* SvenSwipe */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		0C8E17B72F334CE700674637 /* Exceptions for "SvenSwipe" folder in "Embed Frameworks" phase from "SvenSwipe" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				GoogleMobileAds.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
+			};
+			buildPhase = 0C8E17B62F334CE700674637 /* Embed Frameworks */;
+			membershipExceptions = (
+				GoogleMobileAds.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0C62ADC62F1791140093F18C /* SvenSwipe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0C469C712F32120D002B09A7 /* Exceptions for "SvenSwipe" folder in "SvenSwipe" target */,
+				0C8E17B72F334CE700674637 /* Exceptions for "SvenSwipe" folder in "Embed Frameworks" phase from "SvenSwipe" target */,
+			);
 			path = SvenSwipe;
+			sourceTree = "<group>";
+		};
+		0C8E17BD2F334DF000674637 /* SvenSwipeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SvenSwipeTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0C62ADC12F1791140093F18C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C8E17B12F334AD800674637 /* GoogleInteractiveMediaAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C8E17B92F334DF000674637 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,7 +107,11 @@
 			isa = PBXGroup;
 			children = (
 				0C62ADC62F1791140093F18C /* SvenSwipe */,
+				0C8E17BD2F334DF000674637 /* SvenSwipeTests */,
 				0C62ADC52F1791140093F18C /* Products */,
+				0C8E17A92F3349CC00674637 /* AdSettings.swift */,
+				0C8E17AB2F3349CC00674637 /* BannerAdView.swift */,
+				0C8E17AD2F3349CD00674637 /* SettingsView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				0C62ADC42F1791140093F18C /* SvenSwipe.app */,
+				0C8E17BC2F334DF000674637 /* SvenSwipeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,6 +134,7 @@
 				0C62ADC02F1791140093F18C /* Sources */,
 				0C62ADC12F1791140093F18C /* Frameworks */,
 				0C62ADC22F1791140093F18C /* Resources */,
+				0C8E17B62F334CE700674637 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -65,10 +145,34 @@
 			);
 			name = SvenSwipe;
 			packageProductDependencies = (
+				0C8E17B02F334AD800674637 /* GoogleInteractiveMediaAds */,
 			);
 			productName = SvenSwipe;
 			productReference = 0C62ADC42F1791140093F18C /* SvenSwipe.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0C8E17BB2F334DF000674637 /* SvenSwipeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C8E17C22F334DF000674637 /* Build configuration list for PBXNativeTarget "SvenSwipeTests" */;
+			buildPhases = (
+				0C8E17B82F334DF000674637 /* Sources */,
+				0C8E17B92F334DF000674637 /* Frameworks */,
+				0C8E17BA2F334DF000674637 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C8E17C12F334DF000674637 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0C8E17BD2F334DF000674637 /* SvenSwipeTests */,
+			);
+			name = SvenSwipeTests;
+			packageProductDependencies = (
+			);
+			productName = SvenSwipeTests;
+			productReference = 0C8E17BC2F334DF000674637 /* SvenSwipeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -77,11 +181,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2620;
+				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					0C62ADC32F1791140093F18C = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					0C8E17BB2F334DF000674637 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 0C62ADC32F1791140093F18C;
 					};
 				};
 			};
@@ -94,18 +202,29 @@
 			);
 			mainGroup = 0C62ADBB2F1791140093F18C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0C8E17AF2F334AD800674637 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0C62ADC52F1791140093F18C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				0C62ADC32F1791140093F18C /* SvenSwipe */,
+				0C8E17BB2F334DF000674637 /* SvenSwipeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0C62ADC22F1791140093F18C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C8E17BA2F334DF000674637 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -119,10 +238,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C8E17AE2F3349CD00674637 /* SettingsView.swift in Sources */,
+				0C8E17AC2F3349CC00674637 /* BannerAdView.swift in Sources */,
+				0C8E17AA2F3349CC00674637 /* AdSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C8E17B82F334DF000674637 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C8E17C12F334DF000674637 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C62ADC32F1791140093F18C /* SvenSwipe */;
+			targetProxy = 0C8E17C02F334DF000674637 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0C62ADCF2F1791160093F18C /* Debug */ = {
@@ -255,12 +392,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QPYE79Y9K7;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SvenSwipe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SvenSwipe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photos in order to display and manage them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -269,6 +409,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nicodev.SvenSwipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -287,12 +430,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QPYE79Y9K7;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SvenSwipe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SvenSwipe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photos in order to display and manage them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,9 +447,50 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nicodev.SvenSwipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0C8E17C32F334DF000674637 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QPYE79Y9K7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicodev.SvenSwipeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C8E17C42F334DF000674637 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QPYE79Y9K7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicodev.SvenSwipeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -331,7 +518,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		0C8E17C22F334DF000674637 /* Build configuration list for PBXNativeTarget "SvenSwipeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C8E17C32F334DF000674637 /* Debug */,
+				0C8E17C42F334DF000674637 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C8E17AF2F334AD800674637 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C8E17B02F334AD800674637 /* GoogleInteractiveMediaAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C8E17AF2F334AD800674637 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+			productName = GoogleInteractiveMediaAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0C62ADBC2F1791140093F18C /* Project object */;
 }
