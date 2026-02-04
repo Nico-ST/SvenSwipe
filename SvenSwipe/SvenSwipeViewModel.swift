@@ -24,6 +24,11 @@ final class SvenSwipeViewModel: ObservableObject {
     @Published var isPerformingAction: Bool = false
     @Published var pendingDeletes: [PHAsset] = []
 
+    /// All albums that contain at least one image. Populated after authorization succeeds.
+    @Published var albums: [PhotoLibraryService.AlbumInfo] = []
+    /// The currently selected album, or `nil` for the full library.
+    @Published var selectedAlbum: PhotoLibraryService.AlbumInfo?
+
     private let service = PhotoLibraryService()
     private var fetchResult: PHFetchResult<PHAsset> = PHFetchResult()
     private var currentIndex: Int = 0
@@ -54,6 +59,14 @@ final class SvenSwipeViewModel: ObservableObject {
         }
     }
 
+    /// Switch to a different album (or back to the full library when `nil`).
+    /// Clears pending deletes and reloads from the new source.
+    func selectAlbum(_ album: PhotoLibraryService.AlbumInfo?) {
+        pendingDeletes.removeAll()
+        selectedAlbum = album
+        Task { await reload() }
+    }
+
     private func handle(status: PHAuthorizationStatus) async {
         guard status == .authorized || status == .limited else {
             self.state = .unauthorized
@@ -62,8 +75,13 @@ final class SvenSwipeViewModel: ObservableObject {
             return
         }
 
-        // Fetch photos only
-        fetchResult = service.fetchImageAssets()
+        // Populate album list (only once; list doesn't change during a session)
+        if albums.isEmpty {
+            albums = service.fetchAlbums()
+        }
+
+        // Fetch photos – scoped to the selected album if one is set
+        fetchResult = service.fetchImageAssets(in: selectedAlbum?.collection)
         currentIndex = 0
 
         guard fetchResult.count > 0 else {
@@ -130,7 +148,7 @@ final class SvenSwipeViewModel: ObservableObject {
             try await service.delete(assets: pendingDeletes)
             pendingDeletes.removeAll()
             // After deletion, our fetch result becomes outdated; refetch for correctness.
-            fetchResult = service.fetchImageAssets()
+            fetchResult = service.fetchImageAssets(in: selectedAlbum?.collection)
             if currentIndex >= fetchResult.count {
                 currentAsset = nil
                 currentImage = nil

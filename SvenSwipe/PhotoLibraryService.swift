@@ -22,11 +22,57 @@ final class PhotoLibraryService {
         PHPhotoLibrary.authorizationStatus(for: .readWrite)
     }
 
+    // MARK: - Album fetching
+
+    /// A lightweight value type representing a photo album for the picker.
+    struct AlbumInfo {
+        let collection: PHAssetCollection
+        let title: String
+        let count: Int
+    }
+
+    /// Fetch all albums that contain at least one image, sorted alphabetically.
+    /// Includes smart albums (Recents, Favourites, Screenshots …) and user albums.
+    func fetchAlbums() -> [AlbumInfo] {
+        let imageOptions = PHFetchOptions()
+        imageOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.image.rawValue)
+
+        var albums: [AlbumInfo] = []
+
+        let smartAlbums = PHAssetCollection.fetchAssetCollections(
+            with: .smartAlbum, subtype: .any, options: nil
+        )
+        smartAlbums.enumerateObjects { collection, _, _ in
+            let count = PHAsset.fetchAssets(in: collection, options: imageOptions).count
+            guard count > 0 else { return }
+            albums.append(AlbumInfo(collection: collection, title: collection.localizedTitle ?? "Album", count: count))
+        }
+
+        let userAlbums = PHAssetCollection.fetchAssetCollections(
+            with: .album, subtype: .any, options: nil
+        )
+        userAlbums.enumerateObjects { collection, _, _ in
+            let count = PHAsset.fetchAssets(in: collection, options: imageOptions).count
+            guard count > 0 else { return }
+            albums.append(AlbumInfo(collection: collection, title: collection.localizedTitle ?? "Album", count: count))
+        }
+
+        albums.sort { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
+        return albums
+    }
+
+    // MARK: - Asset fetching
+
     /// Fetch only image assets (no videos), newest first.
-    func fetchImageAssets() -> PHFetchResult<PHAsset> {
+    /// Pass `nil` for `collection` to search the entire library.
+    func fetchImageAssets(in collection: PHAssetCollection? = nil) -> PHFetchResult<PHAsset> {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         options.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.image.rawValue)
+
+        if let collection = collection {
+            return PHAsset.fetchAssets(in: collection, options: options)
+        }
         return PHAsset.fetchAssets(with: options)
     }
 

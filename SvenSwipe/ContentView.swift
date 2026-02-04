@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Photos
 import Combine
 
 /// Root view for SvenSwipe.
@@ -16,6 +17,7 @@ struct ContentView: View {
     @StateObject private var viewModel = SvenSwipeViewModel()
     @State private var cardLocalDisabled: Bool = false
     @State private var showSettings: Bool = false
+    @State private var showAlbumPicker: Bool = false
     @State private var adsEnabled: Bool = AdSettings.shared.adsEnabled
     @State private var bannerHeight: CGFloat = 0
     @Environment(\.displayScale) private var displayScale
@@ -73,6 +75,56 @@ struct ContentView: View {
                 adsEnabled = AdSettings.shared.adsEnabled
             }
         }
+        .sheet(isPresented: $showAlbumPicker) {
+            NavigationStack {
+                List {
+                    // "Alle Fotos" resets to the full library
+                    Button {
+                        viewModel.selectAlbum(nil)
+                        showAlbumPicker = false
+                    } label: {
+                        HStack {
+                            Text("Alle Fotos")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            if viewModel.selectedAlbum == nil {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(Color.accentColor)
+                            }
+                        }
+                    }
+
+                    Section {
+                        ForEach(viewModel.albums, id: \.collection.localIdentifier) { album in
+                            Button {
+                                viewModel.selectAlbum(album)
+                                showAlbumPicker = false
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(album.title)
+                                            .foregroundStyle(.primary)
+                                        Text("\(album.count) Foto\(album.count == 1 ? "" : "s")")
+                                            .font(.footnote)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    Spacer()
+                                    if viewModel.selectedAlbum?.collection.localIdentifier == album.collection.localIdentifier {
+                                        Image(systemName: "checkmark")
+                                            .foregroundStyle(Color.accentColor)
+                                    }
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Alben")
+                    }
+                }
+                .navigationTitle("Album wählen")
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .presentationDetents([.medium, .large])
+        }
     }
 
     // MARK: - Header
@@ -99,13 +151,35 @@ struct ContentView: View {
                 .accessibilityLabel("Ausstehende Löschungen bestätigen")
             }
             Button {
+                showAlbumPicker = true
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "photo.stack.fill")
+                        .font(.system(size: 16, weight: .semibold))
+                    if let name = viewModel.selectedAlbum?.title {
+                        Text(name)
+                            .font(.system(size: 13, weight: .semibold))
+                            .lineLimit(1)
+                    }
+                }
+                .foregroundStyle(Color.accentColor)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 8)
+                .background(Capsule().fill(Color(.secondarySystemBackground)))
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(viewModel.selectedAlbum != nil ? "Album: \(viewModel.selectedAlbum!.title)" : "Alle Fotos")
+
+            Button {
                 showSettings = true
             } label: {
                 Image(systemName: "gearshape.fill")
                     .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(Color.accentColor)
                     .padding(10)
                     .background(Circle().fill(Color(.secondarySystemBackground)))
             }
+            .buttonStyle(.plain)
             .accessibilityLabel("Einstellungen")
 
             Button {
@@ -113,9 +187,11 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "arrow.clockwise")
                     .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(Color.accentColor)
                     .padding(10)
                     .background(Circle().fill(Color(.secondarySystemBackground)))
             }
+            .buttonStyle(.plain)
             .accessibilityLabel("Neu laden")
         }
     }
